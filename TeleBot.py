@@ -26,7 +26,7 @@ class WebhookServer(object):
 
 WEBHOOK_HOST = '52.90.242.186'
 WEBHOOK_PORT = 443  # 443, 80, 88 или 8443 (порт должен быть открыт!)
-WEBHOOK_LISTEN = '52.90.242.186'  # На некоторых серверах придется указывать такой же IP, что и выше
+WEBHOOK_LISTEN = '0.0.0.0'  # На некоторых серверах придется указывать такой же IP, что и выше
 
 WEBHOOK_SSL_CERT = './webhook_cert.pem'  # Путь к сертификату
 WEBHOOK_SSL_PRIV = './webhook_pkey.pem'  # Путь к приватному ключу
@@ -53,7 +53,7 @@ cherrypy.config.update({
  # Собственно, запуск!
 cherrypy.quickstart(WebhookServer(), WEBHOOK_URL_PATH, {'/': {}})
 
-
+'''
 @bot.message_handler(commands=['start'])
 def SendInfo(message):
     bot.send_message(message.chat.id, 'Привет я БОООООТ')
@@ -63,7 +63,11 @@ def SendInfo(message):
 def SendInfo(message):
     images = SearchGoogleImages(message.text, message.chat.id)
     for image in images:
-        bot.send_photo(message.chat.id, open(image, 'rb'))
+        bot.send_photo(message.chat.id, open(image, 'rb'))'''
+
+@bot.message_handler(func=lambda message: True, content_types=['text'])
+def echo_message(message):
+    bot.reply_to(message, message.text)
 
 
 def SearchGoogleImages(query, id):
