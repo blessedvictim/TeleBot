@@ -24,8 +24,8 @@ class WebhookServer(object):
         else:
             raise cherrypy.HTTPError(403)
 
-WEBHOOK_HOST = '172.31.22.9'
-WEBHOOK_PORT = 443  # 443, 80, 88 или 8443 (порт должен быть открыт!)
+WEBHOOK_HOST = '52.90.242.186	'
+WEBHOOK_PORT = 80  # 443, 80, 88 или 8443 (порт должен быть открыт!)
 WEBHOOK_LISTEN = '0.0.0.0'  # На некоторых серверах придется указывать такой же IP, что и выше
 
 WEBHOOK_SSL_CERT = './webhook_cert.pem'  # Путь к сертификату
