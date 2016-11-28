@@ -61,11 +61,8 @@ def SearchGoogleImages(query, id ,width=320,height=320,cnt=5):
     soup = bs(request.content, "html.parser")
     # images = soup.find_all('img')
     images = soup.find_all('div', attrs={'class': re.compile("rg_meta")})
-    print(str(images) + '\n\n\n')
     atr = str(images[0])[str(images[0]).find('ou":"') + 5:]
     atr = atr[:atr.find('"')]
-    print(atr)
-    # print(request.text)
 
     imagesPaths = []
 
